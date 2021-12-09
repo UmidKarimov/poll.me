@@ -5,12 +5,18 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+
+import javax.sql.DataSource;
+import java.io.FileInputStream;
+import java.util.Properties;
 
 @Configuration
 @ComponentScan("poll")
@@ -24,35 +30,35 @@ public class SpringConfig implements WebMvcConfigurer {
         this.applicationContext = applicationContext;
     }
 
-    @Bean
+    /*@Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("/WEB-INF/views/");
-        templateResolver.setSuffix(".html");
+        templateResolver.setSuffix("");
         return templateResolver;
-    }
+    }*/
 
-    @Bean
+   /* @Bean
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
         templateEngine.setEnableSpringELCompiler(true);
         return templateEngine;
-    }
+    }*/
 
-    @Override
+   /* @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
-        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
-        resolver.setTemplateEngine(templateEngine());
-        registry.viewResolver(resolver);
-    }
+        //T/hymeleafViewResolver resolver = new ThymeleafViewResolver();
+        //resolver.setTemplateEngine(templateEngine());
+        //registry.viewResolver(resolver);
+    }*/
 
-   /* @Bean
+    @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         Properties properties = getDbProperties();
-        dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+        dataSource.setDriverClassName(properties.getProperty("db.driver"));
         dataSource.setUrl(properties.getProperty("db.url"));
         dataSource.setUsername(properties.getProperty("db.username"));
         dataSource.setPassword(properties.getProperty("db.password"));
@@ -60,7 +66,7 @@ public class SpringConfig implements WebMvcConfigurer {
         return dataSource;
     }
 
-    /*@Bean
+    @Bean
     public JdbcTemplate jdbcTemplate() {
         return new JdbcTemplate(dataSource());
     }
@@ -70,7 +76,7 @@ public class SpringConfig implements WebMvcConfigurer {
         Properties property = new Properties();
 
         try {
-            fis = new FileInputStream("C:\\Users\\Umidk\\IdeaProjects\\spring3\\spring3\\src\\main\\poll.config.properties");
+            fis = new FileInputStream("C:\\Users\\Umidk\\IdeaProjects\\poll.me\\src\\main\\resources\\db_config.properties");
             property.load(fis);
 
         } catch (Exception e) {
@@ -79,5 +85,5 @@ public class SpringConfig implements WebMvcConfigurer {
 
         return property;
 
-    }*/
+    }
 }
