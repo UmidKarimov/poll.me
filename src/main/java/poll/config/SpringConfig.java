@@ -30,30 +30,6 @@ public class SpringConfig implements WebMvcConfigurer {
         this.applicationContext = applicationContext;
     }
 
-    /*@Bean
-    public SpringResourceTemplateResolver templateResolver() {
-        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/views/");
-        templateResolver.setSuffix("");
-        return templateResolver;
-    }*/
-
-   /* @Bean
-    public SpringTemplateEngine templateEngine() {
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver());
-        templateEngine.setEnableSpringELCompiler(true);
-        return templateEngine;
-    }*/
-
-   /* @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-        //T/hymeleafViewResolver resolver = new ThymeleafViewResolver();
-        //resolver.setTemplateEngine(templateEngine());
-        //registry.viewResolver(resolver);
-    }*/
-
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
