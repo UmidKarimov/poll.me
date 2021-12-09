@@ -1,4 +1,4 @@
-package controller;
+package poll.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/poll")
 public class PollController {
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity getSession(){
         try{
-           return ResponseEntity.ok().body("1");
+           return ResponseEntity.ok().body("Welcome to Poll App!");
         }
         catch (Exception e){
             return ResponseEntity.badRequest().body("Server not working!");
